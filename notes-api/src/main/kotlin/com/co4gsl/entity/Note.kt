@@ -14,4 +14,6 @@ data class Note (@Id @GeneratedValue var id: Long? = null,
                  @JsonIgnore var user: String? = null)
 
 @RepositoryRestResource
-interface NotesRepository : JpaRepository<Note, Long>
+interface NotesRepository : JpaRepository<Note, Long> {
+    fun findAllByUser(name: String): List<Note>
+}
