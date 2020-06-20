@@ -12,13 +12,13 @@ import java.security.Principal
 class UserController(val repository: NotesRepository) {
 
     @GetMapping("/user/notes")
-    fun notes(principal: Principal): List<Note> {
+    fun notes(principal: Principal, title: String?): List<Note> {
         println("Fetching all notes for user: ${principal.name}")
-        val notes = repository.findAllByUser(principal.name)
-        if (notes.isEmpty()) {
-            return listOf()
+        return if (title.isNullOrEmpty()) {
+            repository.findAllByUser(principal.name);
         } else {
-            return notes
+            println("Searching for title: ${title}")
+            repository.findAllByUserAndTitle(principal.name, title)
         }
     }
 

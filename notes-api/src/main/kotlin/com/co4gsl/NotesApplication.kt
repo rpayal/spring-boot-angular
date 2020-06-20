@@ -10,7 +10,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 import org.springframework.web.filter.CorsFilter
 
 @SpringBootApplication
-class DemoApplication {
+class NotesApplication {
 
     @Bean
     fun simpleCorsFilter(): FilterRegistrationBean<CorsFilter> {
@@ -28,5 +28,5 @@ class DemoApplication {
 }
 
 fun main(args: Array<String>) {
-    runApplication<DemoApplication>(*args)
+    runApplication<NotesApplication>(*args)
 }
