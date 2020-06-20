@@ -4,18 +4,22 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NoteListComponent } from './note-list/note-list.component';
 import { NoteEditComponent } from './note-edit/note-edit.component';
+import { SortableHeaderDirective } from './note-list/sortable.directive';
 import { NoteService } from './note.service';
 import { NOTE_ROUTES } from './note.routes';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule.forChild(NOTE_ROUTES)
+    RouterModule.forChild(NOTE_ROUTES),
+    NgbModule
   ],
   declarations: [
     NoteListComponent,
-    NoteEditComponent
+    NoteEditComponent,
+    SortableHeaderDirective
   ],
   providers: [NoteService],
   exports: []
