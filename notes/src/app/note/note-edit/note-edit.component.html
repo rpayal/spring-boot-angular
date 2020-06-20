@@ -1,12 +1,12 @@
-<ol class="breadcrumb float-right">
+<ol class="breadcrumb">
   <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
   <li class="breadcrumb-item active">Notes</li>
 </ol>
 <div class="card">
-  <div class="header">
-    <h2 class="title">Notes Detail</h2>
+  <div class="card-body">
+    <h2 class="card-title">Notes Detail</h2>
   </div>
-  <div class="content">
+  <div class="card-text">
     <div *ngIf="feedback" class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
     <form *ngIf="note" #editForm="ngForm" (ngSubmit)="save()">
     
@@ -17,7 +17,10 @@
     
       <div class="form-group">
         <label for="title">Title</label>
-        <input [(ngModel)]="note.title" id="title" name="title" class="form-control">
+        <input [(ngModel)]="note.title" id="title" name="title" class="form-control" required #name="ngModel" [ngClass]="{'is-invalid': name.touched && name.invalid,  'is-valid': name.touched && name.valid}">
+        <div [hidden]="name.valid" style="display: block" class="invalid-feedback">
+          Title is required
+        </div>
       </div>
     
       <div class="form-group">
