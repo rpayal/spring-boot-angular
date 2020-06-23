@@ -13,10 +13,10 @@ import javax.persistence.Id
 data class Note (@Id @GeneratedValue var id: Long? = null,
                  var title: String? = null,
                  var text: String? = null,
-                 @JsonIgnore var user: String? = null)
+                 @JsonIgnore var username: String? = null)
 
 @RepositoryRestResource
 interface NotesRepository : JpaRepository<Note, Long> {
-    fun findAllByUser(name: String, pageable: Pageable): Page<Note>
-    fun findAllByUserAndTitle(name: String, title: String, pageable: Pageable): Page<Note>
+    fun findAllByUsername(name: String, pageable: Pageable): Page<Note>
+    fun findAllByUsernameAndTitle(name: String, title: String, pageable: Pageable): Page<Note>
 }

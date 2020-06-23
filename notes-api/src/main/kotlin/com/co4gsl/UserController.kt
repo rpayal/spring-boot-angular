@@ -17,10 +17,10 @@ class UserController(val repository: NotesRepository) {
     fun notes(principal: Principal, title: String?, pageable: Pageable): Page<Note> {
         println("Fetching all notes for user: ${principal.name}")
         return if (title.isNullOrEmpty()) {
-            repository.findAllByUser(principal.name, pageable);
+            repository.findAllByUsername(principal.name, pageable);
         } else {
             println("Searching for title: ${title}")
-            repository.findAllByUserAndTitle(principal.name, title, pageable)
+            repository.findAllByUsernameAndTitle(principal.name, title, pageable)
         }
     }
 

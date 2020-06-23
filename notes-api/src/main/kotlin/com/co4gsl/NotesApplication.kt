@@ -1,5 +1,6 @@
 package com.co4gsl
 
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.boot.web.servlet.FilterRegistrationBean
@@ -12,12 +13,15 @@ import org.springframework.web.filter.CorsFilter
 @SpringBootApplication
 class NotesApplication {
 
+    @Value("#{ @environment['allowed.origins'] ?: {} }")
+    private lateinit var allowedOrigins: List<String>
+
     @Bean
     fun simpleCorsFilter(): FilterRegistrationBean<CorsFilter> {
         val source = UrlBasedCorsConfigurationSource()
         val config = CorsConfiguration()
         config.allowCredentials = true
-        config.allowedOrigins = listOf("http://localhost:4200")
+        config.allowedOrigins = allowedOrigins
         config.allowedMethods = listOf("*");
         config.allowedHeaders = listOf("*")
         source.registerCorsConfiguration("/**", config)
